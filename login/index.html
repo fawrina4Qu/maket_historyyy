@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fffaf8">
+  <title>Регистрация — История России для чайников</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+  <div class="blossom-site">
+  <div class="topline">Первая лекция бесплатно <span>✦</span> История России — просто и увлекательно</div>
+  <header class="site-header">
+    <a class="brand site-name" href="/" title="На главную"><span class="brand-mark">✿</span><span>История России <i>для чайников</i></span></a>
+    <nav class="main-nav" aria-label="Меню"><a href="/new">Новинки</a><a href="/map">Интерактивная карта</a><a href="/lectures">Лекции</a><a href="/eras">Ключевые эпохи</a><a href="/about">О нас</a></nav>
+  </header>
+  <main class="registration-main">
+    <section class="registration-card" aria-labelledby="registration-title">
+      <a class="registration-home" href="/">← На главную</a>
+      <p class="eyebrow">ИСТОРИЯ НАЧИНАЕТСЯ С ВАС</p>
+      <div class="auth-tabs" role="tablist" aria-label="Регистрация и авторизация">
+        <button class="auth-tab" type="button" role="tab" id="tab-signup" aria-controls="panel-signup" data-auth-tab="signup" data-title="Создать аккаунт">Регистрация</button>
+        <button class="auth-tab" type="button" role="tab" id="tab-login" aria-controls="panel-login" data-auth-tab="login" data-title="Вход в аккаунт">Авторизация</button>
+      </div>
+      <h1 id="registration-title">Создать аккаунт</h1>
+      <p class="registration-copy">Заполните форму, чтобы познакомиться с проектом.</p>
+      <form id="panel-signup" role="tabpanel" aria-labelledby="tab-signup" data-auth-panel="signup" onsubmit="return false">
+        <label class="registration-field">
+          <span>Имя пользователя</span>
+          <input name="username" type="text" autocomplete="username" required>
+        </label>
+        <label class="registration-field">
+          <span>Пароль</span>
+          <input name="password" type="password" autocomplete="new-password" required>
+        </label>
+        <label class="registration-field">
+          <span>Повторите пароль</span>
+          <input name="repeat-password" type="password" autocomplete="new-password" required>
+        </label>
+        <label class="registration-field">
+          <span>Промокод</span>
+          <input name="promo-code" type="text" autocomplete="off" value="HIST_CHAINIK">
+        </label>
+        <button class="button button-primary registration-submit" type="button">Зарегистрироваться</button>
+      </form>
+      <form id="panel-login" role="tabpanel" aria-labelledby="tab-login" data-auth-panel="login" onsubmit="return false" hidden>
+        <label class="registration-field">
+          <span>Имя пользователя</span>
+          <input name="login-username" type="text" autocomplete="username" required>
+        </label>
+        <label class="registration-field">
+          <span>Пароль</span>
+          <input name="login-password" type="password" autocomplete="current-password" required>
+        </label>
+        <button class="button button-primary registration-submit" type="button">Войти</button>
+      </form>
+      <p class="registration-note">Демонстрационная форма: данные не отправляются и не сохраняются.</p>
+    </section>
+  </main>
+  <footer class="site-footer" id="footer">
+    <div class="footer-main section-wrap">
+      <div class="footer-brand"><a class="brand site-name" href="/" title="На главную"><span class="brand-mark">✿</span><span>История России <i>для чайников</i></span></a><p>История в розовом свете.</p><span class="footer-copyright">© 2025 ИСТОРИЯ РОССИИ</span></div>
+      <div class="footer-column"><h3>Контакты</h3><p>+7 (495) 318-27-64</p><p>hello@istoriya-chaynikov.ru</p><p>Москва, ул. Лесная, 14, оф. 302</p><a class="footer-column-button" href="mailto:hello@istoriya-chaynikov.ru">Обратная связь</a></div>
+      <div class="footer-newsletter"><h3>Письма с историей</h3><p>Красивые открытия и новые лекции — раз в неделю.</p><a class="newsletter-link" href="mailto:hello@istoriya-chaynikov.ru">Связаться по почте →</a><small>Новые материалы доступны на сайте без подписки.</small></div>
+    </div>
+    <div class="footer-bottom section-wrap"><span>СОЗДАНО С ЛЮБОВЬЮ К ИСТОРИИ</span><span>МОСКВА · ВЕЗДЕ</span><a href="/">НАВЕРХ ↑</a></div>
+  </footer>
+  </div>
+  <script src="/js/login.js"></script>
+</body>
+</html>
