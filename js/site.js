@@ -88,23 +88,16 @@
       button.innerHTML = '<span class="icon icon-search" aria-hidden="true"></span>';
     };
     button.addEventListener("click", function () {
-      var input = searchBox.querySelector('input[type="search"]') || mainNav?.querySelector('input[type="search"]');
+      var input = searchBox.querySelector('input[type="search"]');
       if (input) {
         closeHeaderSearch();
-        if (window.matchMedia("(max-width: 710px)").matches) setMenu(false);
         return;
       }
       input = document.createElement("input");
       input.type = "search";
       input.placeholder = "Поиск";
       input.setAttribute("aria-label", "Поиск по сайту");
-      var isMobile = window.matchMedia("(max-width: 710px)").matches;
-      if (isMobile && mainNav) {
-        mainNav.prepend(input);
-        setMenu(true);
-      } else {
-        button.before(input);
-      }
+      button.before(input);
       button.setAttribute("aria-expanded", "true");
       button.setAttribute("aria-label", "Закрыть поиск");
       button.innerHTML = '<span class="icon icon-close" aria-hidden="true"></span>';
