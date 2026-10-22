@@ -1,6 +1,5 @@
 (function () {
   var data = window.SITE_DATA;
-  var icons = window.SITE_ICONS;
   var favoritesKey = "favorite-lectures";
 
   function readFavorites() {
@@ -48,7 +47,7 @@
         searchBox.querySelector(".header-search-results")?.remove();
         button.setAttribute("aria-expanded", "false");
         button.setAttribute("aria-label", "Открыть поиск");
-        button.innerHTML = icons.search;
+        button.innerHTML = '<span class="icon icon-search" aria-hidden="true"></span>';
         return;
       }
       input = document.createElement("input");
@@ -58,7 +57,7 @@
       button.before(input);
       button.setAttribute("aria-expanded", "true");
       button.setAttribute("aria-label", "Закрыть поиск");
-      button.innerHTML = icons.headerClose;
+      button.innerHTML = '<span class="icon icon-close" aria-hidden="true"></span>';
       input.focus();
       input.addEventListener("input", function () {
         searchBox.querySelector(".header-search-results")?.remove();

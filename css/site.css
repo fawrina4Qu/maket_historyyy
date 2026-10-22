@@ -179,9 +179,8 @@ img { max-width: 100%; }
 .header-favorites.is-active svg {fill:currentColor}
 
 .lecture-favorite {position:absolute;top:12px;right:12px;width:31px;height:31px;border:0;border-radius:50%;background:#fffaf0e8;display:grid;place-items:center;cursor:pointer;color:#a9a09d}
-.lecture-favorite svg {stroke-width:1.4}
 .lecture-favorite.is-favorite {background:#b96879;color:#fff}
-.lecture-favorite.is-favorite svg {fill:currentColor}
+.lecture-favorite.is-favorite .icon-heart { --icon:url("../img/icons/heart-filled.svg"); }
 
 .favorites-overlay-backdrop {position:fixed;inset:0;z-index:40;display:grid;place-items:center;padding:20px;background:#3a282866}
 .favorites-overlay {width:min(560px,100%);max-height:80vh;overflow-y:auto;background:#fffaf8;padding:30px;box-shadow:0 20px 50px #2a181c40}
@@ -256,7 +255,7 @@ img { max-width: 100%; }
 .slavic-notes-pagination button:focus-visible { outline:2px solid #b96879; outline-offset:3px; }
 .slavic-notes-pagination button:hover,.slavic-notes-pagination .is-active { border-color:#b96879; background:#b96879; color:#fff; }
 .slavic-notes-pagination .slavic-notes-arrow { border-radius:50%; }
-.slavic-notes-pagination .slavic-notes-arrow svg { display:block; width:20px; height:20px; }
+.slavic-notes-pagination .slavic-notes-arrow .icon { --icon-size:20px; }
 @media (max-width:650px) { .slavic-notes { padding-bottom:64px; }.slavic-notes-video { margin-bottom:20px; }.slavic-notes-page { padding:22px 18px; }.slavic-notes-page p,.slavic-notes-page li { font-size:13px; }.slavic-notes-pagination { max-width:100%; justify-content:flex-start; gap:6px; overflow-x:auto; padding-bottom:4px; }.slavic-notes-pagination button { min-width:42px; height:42px; } }
 
 .header-actions .menu-toggle { display:none; }
@@ -274,3 +273,13 @@ img { max-width: 100%; }
   .hero-content { margin:0; width:auto; padding:28px 22px 24px; }
   .hero-dots { position:relative; left:auto; bottom:auto; justify-content:center; padding:0 0 28px; }
 }
+
+.icon { display:inline-block; flex-shrink:0; width:var(--icon-size,24px); height:var(--icon-size,24px); background-color:currentColor; -webkit-mask:var(--icon) center / contain no-repeat; mask:var(--icon) center / contain no-repeat; }
+.icon-search { --icon:url("../img/icons/search.svg"); }
+.icon-close { --icon:url("../img/icons/close.svg"); }
+.icon-arrow-left { --icon:url("../img/icons/arrow-left.svg"); }
+.icon-arrow-right { --icon:url("../img/icons/arrow-right.svg"); }
+.icon-heart { --icon:url("../img/icons/heart.svg"); }
+.icon-books { --icon:url("../img/icons/books.svg"); }
+.icon-map { --icon:url("../img/icons/map.svg"); }
+.icon-hourglass { --icon:url("../img/icons/hourglass.svg"); }

@@ -3,7 +3,6 @@
   if (!section) return;
 
   var cities = window.SITE_DATA.mapCities;
-  var icons = window.SITE_ICONS;
   var esc = window.Site.esc;
   var dialog = section.querySelector("dialog.map-popup");
   var points = section.querySelectorAll(".map-point");
@@ -24,14 +23,14 @@
       return;
     }
     dialog.innerHTML =
-      '<button class="map-popup-close" aria-label="Закрыть окно">' + icons.mapClose + "</button>" +
+      '<button class="map-popup-close" aria-label="Закрыть окно"><span class="icon icon-close" style="--icon-size:19px" aria-hidden="true"></span></button>' +
       '<div class="map-detail-top"><span>ГОРОД НА КАРТЕ</span><span class="map-detail-ornament">✳</span></div>' +
       "<h3>" + esc(selected.title) + "</h3>" +
       (selected.image ? '<img class="map-city-image" src="' + selected.image + '" alt="' + esc(selected.title) + '" />' : "") +
       "<dl><div><dt>Год основания</dt><dd>" + esc(selected.founded) + "</dd></div>" +
       "<div><dt>Историческая территория</dt><dd>" + esc(selected.history) + "</dd></div></dl>" +
       '<p class="map-fact">' + esc(selected.facts[factIndex]) + "</p>" +
-      '<button class="map-next-fact">Ещё факт ' + icons.arrowRight16 + "</button>";
+      '<button class="map-next-fact">Ещё факт <span class="icon icon-arrow-right" style="--icon-size:16px" aria-hidden="true"></span></button>';
   }
 
   function closeDialog() {
