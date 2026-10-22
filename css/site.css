@@ -275,7 +275,8 @@ img { max-width: 100%; }
   .hero-carousel::after { display:none; }
   .hero-slide { object-fit:contain; object-position:center; }
   .hero-content { margin:0; width:auto; padding:28px 22px 24px; }
-  .hero-dots { position:relative; left:auto; bottom:auto; justify-content:center; padding:0 0 28px; }
+  .hero-dots { position:relative; left:auto; bottom:auto; justify-content:center; padding:0 0 12px; }
+  .hero-caption { position:relative; right:auto; bottom:auto; justify-content:center; flex-wrap:wrap; gap:8px; padding:0 16px 18px; color:#8a6260; text-align:center; }
 }
 
 @media (max-width: 900px) {
