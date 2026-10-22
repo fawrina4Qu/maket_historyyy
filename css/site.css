@@ -370,6 +370,8 @@ img { max-width: 100%; }
 .footer-bottom .back-to-top .icon { --icon-size:19px; }
 
 @media (orientation: landscape) and (max-height: 500px) and (max-width: 960px) {
+  body { min-height:100svh; overflow-y:auto; }
+  .blossom-site { height:auto; min-height:100svh; overflow-x:clip; overflow-y:visible; }
   .topline { display:none; }
   .site-header { position:relative; height:auto; min-height:56px; padding:6px 14px; flex-wrap:nowrap; gap:8px; }
   .site-header .brand { max-width:40vw; font-size:17px; line-height:1.05; white-space:normal; }
