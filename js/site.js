@@ -37,17 +37,61 @@
     paintFavorites();
   });
 
+  var mainNav = document.querySelector(".site-header .main-nav");
+  var headerActions = document.querySelector(".site-header .header-actions");
+  var menuButton;
+  var setMenu = function (open) {
+    if (!mainNav || !menuButton) return;
+    mainNav.classList.toggle("is-open", open);
+    menuButton.setAttribute("aria-expanded", String(open));
+    menuButton.setAttribute("aria-label", open ? "Закрыть меню" : "Открыть меню");
+  };
+  var closeHeaderSearch;
+  if (mainNav && headerActions) {
+    menuButton = document.createElement("button");
+    menuButton.type = "button";
+    menuButton.className = "menu-toggle";
+    menuButton.setAttribute("aria-label", "Открыть меню");
+    menuButton.setAttribute("aria-expanded", "false");
+    menuButton.innerHTML = "<span></span><span></span><span></span>";
+    headerActions.append(menuButton);
+    menuButton.addEventListener("click", function (event) {
+      event.stopPropagation();
+      var isOpen = mainNav.classList.contains("is-open");
+      if (isOpen) closeHeaderSearch?.();
+      setMenu(!isOpen);
+    });
+    document.addEventListener("click", function (event) {
+      if (!mainNav.contains(event.target) && !headerActions.contains(event.target)) {
+        closeHeaderSearch?.();
+        setMenu(false);
+      }
+    });
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") {
+        closeHeaderSearch?.();
+        setMenu(false);
+      }
+    });
+  }
+
   var searchBox = document.querySelector(".header-search");
-  if (searchBox && data) {
+  if (searchBox) {
     var button = searchBox.querySelector("button");
-    button.addEventListener("click", function () {
+    closeHeaderSearch = function () {
+      searchBox.querySelector('input[type="search"]')?.remove();
+      mainNav?.querySelector('input[type="search"]')?.remove();
+      searchBox.querySelector(".header-search-results")?.remove();
+      mainNav?.querySelector(".header-search-results")?.remove();
+      button.setAttribute("aria-expanded", "false");
+      button.setAttribute("aria-label", "Открыть поиск");
+      button.innerHTML = '<span class="icon icon-search" aria-hidden="true"></span>';
+    };
+    button.addEventListener("click", function (event) {
+      event.stopPropagation();
       var input = searchBox.querySelector('input[type="search"]');
       if (input) {
-        input.remove();
-        searchBox.querySelector(".header-search-results")?.remove();
-        button.setAttribute("aria-expanded", "false");
-        button.setAttribute("aria-label", "Открыть поиск");
-        button.innerHTML = '<span class="icon icon-search" aria-hidden="true"></span>';
+        closeHeaderSearch();
         return;
       }
       input = document.createElement("input");
@@ -60,9 +104,10 @@
       button.innerHTML = '<span class="icon icon-close" aria-hidden="true"></span>';
       input.focus();
       input.addEventListener("input", function () {
-        searchBox.querySelector(".header-search-results")?.remove();
+        var resultsContainer = input.parentElement;
+        resultsContainer.querySelector(".header-search-results")?.remove();
         var query = input.value.trim().toLocaleLowerCase("ru").replace(/ё/g, "е");
-        if (!query) return;
+        if (!query || !data) return;
         var results = data.searchPages.filter(function (page) {
           return (page.title + " " + page.text).toLocaleLowerCase("ru").replace(/ё/g, "е").includes(query);
         }).slice(0, 10);
@@ -78,36 +123,8 @@
             list.append(link);
           });
         }
-        searchBox.append(list);
+        resultsContainer.append(list);
       });
-    });
-  }
-
-  var mainNav = document.querySelector(".site-header .main-nav");
-  var headerActions = document.querySelector(".site-header .header-actions");
-  if (mainNav && headerActions) {
-    var menuButton = document.createElement("button");
-    menuButton.type = "button";
-    menuButton.className = "menu-toggle";
-    menuButton.setAttribute("aria-label", "Открыть меню");
-    menuButton.setAttribute("aria-expanded", "false");
-    menuButton.innerHTML = "<span></span><span></span><span></span>";
-    headerActions.append(menuButton);
-
-    var setMenu = function (open) {
-      mainNav.classList.toggle("is-open", open);
-      menuButton.setAttribute("aria-expanded", String(open));
-      menuButton.setAttribute("aria-label", open ? "Закрыть меню" : "Открыть меню");
-    };
-    menuButton.addEventListener("click", function (event) {
-      event.stopPropagation();
-      setMenu(!mainNav.classList.contains("is-open"));
-    });
-    document.addEventListener("click", function (event) {
-      if (!mainNav.contains(event.target)) setMenu(false);
-    });
-    document.addEventListener("keydown", function (event) {
-      if (event.key === "Escape") setMenu(false);
     });
   }
 

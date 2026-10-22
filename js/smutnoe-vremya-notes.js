@@ -54,7 +54,7 @@ window.SITE_DATA.notes = Object.assign({}, window.SITE_DATA.notes, {
       ]
     },
     {
-      title: "💡 Последствия Смуты:",
+      title: "Последствия Смуты:",
       paragraphs: [],
       items: [
         { text: "Восстановление государственности, но потеря значительных территорий (выход к Балтике и Смоленск)." },
