@@ -46,6 +46,19 @@
       arrows[1].disabled = current === pages.length - 1;
     }
 
+    function reserveHeight() {
+      var saved = current;
+      page.style.minHeight = "";
+      var tallest = 0;
+      for (current = 0; current < pages.length; current++) {
+        render();
+        tallest = Math.max(tallest, page.offsetHeight);
+      }
+      current = saved;
+      render();
+      page.style.minHeight = tallest + "px";
+    }
+
     numbers.forEach(function (button, index) {
       button.addEventListener("click", function () {
         current = index;
@@ -61,5 +74,7 @@
       render();
     });
     render();
+    reserveHeight();
+    window.addEventListener("resize", reserveHeight);
   });
 })();
