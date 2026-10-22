@@ -146,7 +146,7 @@ img { max-width: 100%; }
 .lecture-info h2 a:hover { text-decoration:underline; }
 .lecture-info p { min-height:60px; margin:0 0 15px; color:#927876; font-size:11px; line-height:1.65; }
 .lecture-meta { color:#b18b61; font-size:7px; letter-spacing:.16em; }
-@media (max-width:900px) { .community-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }.lecture-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media (max-width:900px) { .community-grid { grid-template-columns:repeat(5,minmax(0,1fr)); }.lecture-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
 @media (max-width:650px) { .community-actions { gap:12px; align-items:flex-start; flex-direction:column; }.community .section-heading { align-items:flex-start; }.community-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }.lecture-sections,.lecture-grid { grid-template-columns:1fr; }.lecture-section-card { min-height:220px; padding:23px; }.lecture-image { aspect-ratio:1.5; }.lecture-info p { min-height:0; } }
 
 ::-webkit-scrollbar {
