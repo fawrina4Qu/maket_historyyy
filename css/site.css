@@ -403,3 +403,11 @@ img { max-width: 100%; }
   .footer-newsletter { grid-column:auto; }
   .footer-bottom { justify-content:space-between; gap:10px 14px; padding-top:12px; padding-bottom:12px; }
 }
+
+@media (min-width:711px) {
+  .main-nav { flex:1; min-width:0; justify-content:center; margin-inline:clamp(8px,1vw,14px); }
+}
+
+@media (min-width:961px) {
+  .main-nav { position:absolute; left:50%; flex:none; margin:0; transform:translateX(-50%); }
+}
