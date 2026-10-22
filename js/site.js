@@ -37,30 +37,45 @@
     paintFavorites();
   });
 
+  var mainNav = document.querySelector(".site-header .main-nav");
   var searchBox = document.querySelector(".header-search");
+  var closeHeaderSearch;
   if (searchBox && data) {
     var button = searchBox.querySelector("button");
+    closeHeaderSearch = function () {
+      searchBox.querySelector('input[type="search"]')?.remove();
+      mainNav.querySelector('input[type="search"]')?.remove();
+      searchBox.querySelector(".header-search-results")?.remove();
+      mainNav.querySelector(".header-search-results")?.remove();
+      button.setAttribute("aria-expanded", "false");
+      button.setAttribute("aria-label", "Открыть поиск");
+      button.innerHTML = '<span class="icon icon-search" aria-hidden="true"></span>';
+    };
     button.addEventListener("click", function () {
-      var input = searchBox.querySelector('input[type="search"]');
+      var input = searchBox.querySelector('input[type="search"]') || mainNav.querySelector('input[type="search"]');
       if (input) {
-        input.remove();
-        searchBox.querySelector(".header-search-results")?.remove();
-        button.setAttribute("aria-expanded", "false");
-        button.setAttribute("aria-label", "Открыть поиск");
-        button.innerHTML = '<span class="icon icon-search" aria-hidden="true"></span>';
+        closeHeaderSearch();
+        if (window.matchMedia("(max-width: 710px)").matches) setMenu(false);
         return;
       }
       input = document.createElement("input");
       input.type = "search";
       input.placeholder = "Поиск";
       input.setAttribute("aria-label", "Поиск по сайту");
-      button.before(input);
+      var isMobile = window.matchMedia("(max-width: 710px)").matches;
+      if (isMobile) {
+        mainNav.prepend(input);
+        setMenu(true);
+      } else {
+        button.before(input);
+      }
       button.setAttribute("aria-expanded", "true");
       button.setAttribute("aria-label", "Закрыть поиск");
       button.innerHTML = '<span class="icon icon-close" aria-hidden="true"></span>';
       input.focus();
       input.addEventListener("input", function () {
-        searchBox.querySelector(".header-search-results")?.remove();
+        var resultsContainer = input.parentElement;
+        resultsContainer.querySelector(".header-search-results")?.remove();
         var query = input.value.trim().toLocaleLowerCase("ru").replace(/ё/g, "е");
         if (!query) return;
         var results = data.searchPages.filter(function (page) {
@@ -78,12 +93,10 @@
             list.append(link);
           });
         }
-        searchBox.append(list);
+        resultsContainer.append(list);
       });
     });
   }
-
-  var mainNav = document.querySelector(".site-header .main-nav");
   var headerActions = document.querySelector(".site-header .header-actions");
   if (mainNav && headerActions) {
     var menuButton = document.createElement("button");
@@ -101,10 +114,15 @@
     };
     menuButton.addEventListener("click", function (event) {
       event.stopPropagation();
-      setMenu(!mainNav.classList.contains("is-open"));
+      var isOpen = mainNav.classList.contains("is-open");
+      if (isOpen) closeHeaderSearch?.();
+      setMenu(!isOpen);
     });
     document.addEventListener("click", function (event) {
-      if (!mainNav.contains(event.target)) setMenu(false);
+      if (!mainNav.contains(event.target) && !headerActions.contains(event.target)) {
+        closeHeaderSearch?.();
+        setMenu(false);
+      }
     });
     document.addEventListener("keydown", function (event) {
       if (event.key === "Escape") setMenu(false);
