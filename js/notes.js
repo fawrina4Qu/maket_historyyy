@@ -9,6 +9,11 @@
     var pagination = section.querySelector(".slavic-notes-pagination");
     var numbers = Array.from(pagination.querySelectorAll(".slavic-notes-number"));
     var arrows = Array.from(pagination.querySelectorAll(".slavic-notes-arrow"));
+    var progress = document.createElement("span");
+    progress.className = "slavic-notes-progress";
+    progress.setAttribute("aria-live", "polite");
+    pagination.insertBefore(progress, arrows[1]);
+    pagination.classList.add("has-compact-progress");
 
     function render() {
       var item = pages[current];
@@ -36,6 +41,7 @@
         content.push(list);
       }
       page.replaceChildren(eyebrow, ...content);
+      progress.textContent = (current + 1) + " / " + pages.length;
       numbers.forEach(function (button, index) {
         var active = index === current;
         button.classList.toggle("is-active", active);
