@@ -87,7 +87,8 @@
       button.setAttribute("aria-label", "Открыть поиск");
       button.innerHTML = '<span class="icon icon-search" aria-hidden="true"></span>';
     };
-    button.addEventListener("click", function () {
+    button.addEventListener("click", function (event) {
+      event.stopPropagation();
       var input = searchBox.querySelector('input[type="search"]');
       if (input) {
         closeHeaderSearch();
