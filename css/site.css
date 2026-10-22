@@ -142,6 +142,8 @@ img { max-width: 100%; }
 .lecture-number { position:absolute; right:12px; bottom:10px; color:#fff; font:italic 18px Georgia,serif; text-shadow:0 1px 5px #333; }
 .lecture-info { padding:18px 19px 17px; }
 .lecture-info h2 { margin:0 0 9px; color:#604343; font:400 20px/1.2 Georgia,serif; }
+.lecture-info h2 a { color:inherit; text-decoration:none; }
+.lecture-info h2 a:hover { text-decoration:underline; }
 .lecture-info p { min-height:60px; margin:0 0 15px; color:#927876; font-size:11px; line-height:1.65; }
 .lecture-meta { color:#b18b61; font-size:7px; letter-spacing:.16em; }
 @media (max-width:900px) { .community-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }.lecture-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
