@@ -414,8 +414,10 @@ img { max-width: 100%; }
 }
 
 @media (min-width:711px) and (max-width:1179px) {
-  .site-header { height:auto; min-height:82px; padding-block:18px; flex-wrap:wrap; gap:12px 18px; }
-  .main-nav { position:static; order:3; flex:0 0 100%; justify-content:center; flex-wrap:wrap; margin:0; transform:none; }
+  .site-header { height:auto; min-height:82px; padding-block:18px; flex-wrap:nowrap; gap:10px; }
+  .site-header .brand { flex:0 0 145px; width:145px; max-width:145px; white-space:normal; font-size:17px; line-height:1.05; }
+  .main-nav { position:static; flex:1; min-width:0; justify-content:center; flex-wrap:nowrap; gap:clamp(4px,.8vw,8px); margin:0; transform:none; }
+  .main-nav a { font-size:clamp(7px,1vw,9px); white-space:nowrap; }
 }
 
 @media (min-width:711px) {
