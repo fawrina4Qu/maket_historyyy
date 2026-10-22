@@ -412,3 +412,9 @@ img { max-width: 100%; }
 @media (min-width:961px) {
   .main-nav { position:absolute; left:50%; flex:none; margin:0; transform:translateX(-50%); }
 }
+
+@media (min-width:711px) {
+  .site-header:has(.header-search input[type="search"]) .header-search { position:static; }
+  .site-header .header-search input[type="search"] { position:absolute; top:calc(100% + 8px); right:max(5.6vw, 28px); z-index:31; }
+  .site-header:has(.header-search input[type="search"]) .header-search-results { top:calc(100% + 52px); right:max(5.6vw, 28px); }
+}
