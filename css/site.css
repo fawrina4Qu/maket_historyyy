@@ -287,6 +287,14 @@ img { max-width: 100%; }
   .footer-main { gap:24px; }
 }
 
+@media (width: 1032px) and (hover: none) and (pointer: coarse) {
+  .site-header { padding-inline:32px; }
+  .brand { font-size:20px; }
+  .main-nav { flex:1; justify-content:center; min-width:0; gap:10px; margin-inline:16px; }
+  .main-nav a { font-size:10px; letter-spacing:.03em; }
+  .header-actions { gap:12px; }
+}
+
 @media (max-width: 650px) {
   .site-header { padding-right:12px; padding-left:12px; }
   .brand { min-width:0; max-width:170px; white-space:normal; font-size:17px; line-height:1.05; }
