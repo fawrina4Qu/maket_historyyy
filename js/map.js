@@ -24,7 +24,7 @@
     }
     dialog.innerHTML =
       '<button class="map-popup-close" aria-label="Закрыть окно"><span class="icon icon-close" style="--icon-size:19px" aria-hidden="true"></span></button>' +
-      '<div class="map-detail-top"><span>ГОРОД НА КАРТЕ</span><span class="map-detail-ornament">✳</span></div>' +
+      '<div class="map-detail-top"><span>ГОРОД НА КАРТЕ</span></div>' +
       "<h3>" + esc(selected.title) + "</h3>" +
       (selected.image ? '<img class="map-city-image" src="' + selected.image + '" alt="' + esc(selected.title) + '" />' : "") +
       "<dl><div><dt>Год основания</dt><dd>" + esc(selected.founded) + "</dd></div>" +
