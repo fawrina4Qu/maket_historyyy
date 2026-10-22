@@ -84,6 +84,34 @@
     });
   }
 
+  var mainNav = document.querySelector(".site-header .main-nav");
+  var headerActions = document.querySelector(".site-header .header-actions");
+  if (mainNav && headerActions) {
+    var menuButton = document.createElement("button");
+    menuButton.type = "button";
+    menuButton.className = "menu-toggle";
+    menuButton.setAttribute("aria-label", "Открыть меню");
+    menuButton.setAttribute("aria-expanded", "false");
+    menuButton.innerHTML = "<span></span><span></span><span></span>";
+    headerActions.append(menuButton);
+
+    var setMenu = function (open) {
+      mainNav.classList.toggle("is-open", open);
+      menuButton.setAttribute("aria-expanded", String(open));
+      menuButton.setAttribute("aria-label", open ? "Закрыть меню" : "Открыть меню");
+    };
+    menuButton.addEventListener("click", function (event) {
+      event.stopPropagation();
+      setMenu(!mainNav.classList.contains("is-open"));
+    });
+    document.addEventListener("click", function (event) {
+      if (!mainNav.contains(event.target)) setMenu(false);
+    });
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") setMenu(false);
+    });
+  }
+
   document.querySelectorAll(".footer-bottom a[href='/']").forEach(function (link) {
     link.addEventListener("click", function (event) {
       event.preventDefault();
