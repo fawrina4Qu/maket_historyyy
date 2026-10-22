@@ -38,21 +38,57 @@
   });
 
   var mainNav = document.querySelector(".site-header .main-nav");
-  var searchBox = document.querySelector(".header-search");
+  var headerActions = document.querySelector(".site-header .header-actions");
+  var menuButton;
+  var setMenu = function (open) {
+    if (!mainNav || !menuButton) return;
+    mainNav.classList.toggle("is-open", open);
+    menuButton.setAttribute("aria-expanded", String(open));
+    menuButton.setAttribute("aria-label", open ? "Закрыть меню" : "Открыть меню");
+  };
   var closeHeaderSearch;
-  if (searchBox && data) {
+  if (mainNav && headerActions) {
+    menuButton = document.createElement("button");
+    menuButton.type = "button";
+    menuButton.className = "menu-toggle";
+    menuButton.setAttribute("aria-label", "Открыть меню");
+    menuButton.setAttribute("aria-expanded", "false");
+    menuButton.innerHTML = "<span></span><span></span><span></span>";
+    headerActions.append(menuButton);
+    menuButton.addEventListener("click", function (event) {
+      event.stopPropagation();
+      var isOpen = mainNav.classList.contains("is-open");
+      if (isOpen) closeHeaderSearch?.();
+      setMenu(!isOpen);
+    });
+    document.addEventListener("click", function (event) {
+      if (!mainNav.contains(event.target) && !headerActions.contains(event.target)) {
+        closeHeaderSearch?.();
+        setMenu(false);
+      }
+    });
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") {
+        closeHeaderSearch?.();
+        setMenu(false);
+      }
+    });
+  }
+
+  var searchBox = document.querySelector(".header-search");
+  if (searchBox) {
     var button = searchBox.querySelector("button");
     closeHeaderSearch = function () {
       searchBox.querySelector('input[type="search"]')?.remove();
-      mainNav.querySelector('input[type="search"]')?.remove();
+      mainNav?.querySelector('input[type="search"]')?.remove();
       searchBox.querySelector(".header-search-results")?.remove();
-      mainNav.querySelector(".header-search-results")?.remove();
+      mainNav?.querySelector(".header-search-results")?.remove();
       button.setAttribute("aria-expanded", "false");
       button.setAttribute("aria-label", "Открыть поиск");
       button.innerHTML = '<span class="icon icon-search" aria-hidden="true"></span>';
     };
     button.addEventListener("click", function () {
-      var input = searchBox.querySelector('input[type="search"]') || mainNav.querySelector('input[type="search"]');
+      var input = searchBox.querySelector('input[type="search"]') || mainNav?.querySelector('input[type="search"]');
       if (input) {
         closeHeaderSearch();
         if (window.matchMedia("(max-width: 710px)").matches) setMenu(false);
@@ -63,7 +99,7 @@
       input.placeholder = "Поиск";
       input.setAttribute("aria-label", "Поиск по сайту");
       var isMobile = window.matchMedia("(max-width: 710px)").matches;
-      if (isMobile) {
+      if (isMobile && mainNav) {
         mainNav.prepend(input);
         setMenu(true);
       } else {
@@ -77,7 +113,7 @@
         var resultsContainer = input.parentElement;
         resultsContainer.querySelector(".header-search-results")?.remove();
         var query = input.value.trim().toLocaleLowerCase("ru").replace(/ё/g, "е");
-        if (!query) return;
+        if (!query || !data) return;
         var results = data.searchPages.filter(function (page) {
           return (page.title + " " + page.text).toLocaleLowerCase("ru").replace(/ё/g, "е").includes(query);
         }).slice(0, 10);
@@ -95,37 +131,6 @@
         }
         resultsContainer.append(list);
       });
-    });
-  }
-  var headerActions = document.querySelector(".site-header .header-actions");
-  if (mainNav && headerActions) {
-    var menuButton = document.createElement("button");
-    menuButton.type = "button";
-    menuButton.className = "menu-toggle";
-    menuButton.setAttribute("aria-label", "Открыть меню");
-    menuButton.setAttribute("aria-expanded", "false");
-    menuButton.innerHTML = "<span></span><span></span><span></span>";
-    headerActions.append(menuButton);
-
-    var setMenu = function (open) {
-      mainNav.classList.toggle("is-open", open);
-      menuButton.setAttribute("aria-expanded", String(open));
-      menuButton.setAttribute("aria-label", open ? "Закрыть меню" : "Открыть меню");
-    };
-    menuButton.addEventListener("click", function (event) {
-      event.stopPropagation();
-      var isOpen = mainNav.classList.contains("is-open");
-      if (isOpen) closeHeaderSearch?.();
-      setMenu(!isOpen);
-    });
-    document.addEventListener("click", function (event) {
-      if (!mainNav.contains(event.target) && !headerActions.contains(event.target)) {
-        closeHeaderSearch?.();
-        setMenu(false);
-      }
-    });
-    document.addEventListener("keydown", function (event) {
-      if (event.key === "Escape") setMenu(false);
     });
   }
 
