@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fffaf8">
+  <title>Промокод — История России для чайников</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body class="registration-page">
+  <div class="blossom-site">
+    <div class="topline">Первая лекция бесплатно  История России — просто и увлекательно</div>
+    <header class="site-header">
+      <a class="brand site-name" href="/" title="На главную"><span>История России <i>для чайников</i></span></a>
+      <nav class="main-nav" aria-label="Меню"><a href="/new">Новинки</a><a href="/map">Интерактивная карта</a><a href="/lectures">Лекции</a><a href="/eras">Ключевые эпохи</a><a href="/about">О нас</a></nav>
+      <div class="header-actions"></div>
+    </header>
+    <main class="registration-main">
+      <section class="registration-card promo-card" aria-labelledby="promo-title">
+        <a class="registration-home" href="/login?mode=signup">← К регистрации</a>
+        <p class="eyebrow">СКИДКА НА ПЕРВЫЙ КУРС</p>
+        <h1 id="promo-title">Данные промокода</h1>
+        <p class="registration-copy">HIST_CHAINIK — скидка 10% на первый курс.</p>
+        <form class="promo-form-grid" onsubmit="return false">
+          <label class="registration-field">
+            <span>ID</span>
+            <input name="id" type="text" value="Создаётся базой данных" disabled>
+          </label>
+          <label class="registration-field">
+            <span>Код промокода</span>
+            <input name="code" type="text" value="HIST_CHAINIK" required>
+          </label>
+          <label class="registration-field">
+            <span>Тип скидки</span>
+            <select name="discount_type" required>
+              <option value="percent" selected>Процентная</option>
+              <option value="fixed">Фиксированная</option>
+            </select>
+          </label>
+          <label class="registration-field">
+            <span>Размер скидки</span>
+            <input name="discount_value" type="number" min="0" step="0.01" value="10">
+          </label>
+          <label class="registration-field">
+            <span>Дата начала действия</span>
+            <input name="valid_from" type="datetime-local">
+          </label>
+          <label class="registration-field">
+            <span>Дата окончания действия</span>
+            <input name="valid_until" type="datetime-local">
+          </label>
+          <label class="registration-field">
+            <span>Максимум применений</span>
+            <input name="max_users" type="number" min="0" step="1">
+          </label>
+          <label class="registration-field">
+            <span>Применений на пользователя</span>
+            <input name="max_uses_per_user" type="number" min="0" step="1">
+          </label>
+          <label class="registration-field">
+            <span>Создан</span>
+            <input name="created_at" type="datetime-local" required>
+          </label>
+          <label class="promo-checkbox">
+            <input name="is_active" type="checkbox" checked>
+            Активен
+          </label>
+          <p class="promo-generated-id">ID создаётся автоматически базой данных при добавлении записи.</p>
+          <button class="button button-primary registration-submit" type="submit">Сохранить промокод</button>
+        </form>
+        <p class="registration-note">Демонстрационная форма: данные не отправляются и не сохраняются.</p>
+      </section>
+    </main>
+    <footer class="site-footer" id="footer">
+      <div class="footer-main section-wrap">
+        <div class="footer-brand"><a class="brand site-name" href="/" title="На главную"><span>История России <i>для чайников</i></span></a><p>История в розовом свете.</p><span class="footer-copyright">© 2025 ИСТОРИЯ РОССИИ</span></div>
+        <div class="footer-column"><h3>Контакты</h3><p>+7 (495) 318-27-64</p><p>hello@istoriya-chaynikov.ru</p><p>Москва, ул. Лесная, 14, оф. 302</p><a class="footer-column-button" href="mailto:hello@istoriya-chaynikov.ru">Обратная связь</a></div>
+        <div class="footer-newsletter"><h3>Письма с историей</h3><p>Красивые открытия и новые лекции — раз в неделю.</p><a class="newsletter-link" href="mailto:hello@istoriya-chaynikov.ru">Связаться по почте →</a></div>
+      </div>
+      <div class="footer-bottom section-wrap"><span>СОЗДАНО С ЛЮБОВЬЮ К ИСТОРИИ</span><span>МОСКВА · ВЕЗДЕ</span><a href="/" class="back-to-top" aria-label="Наверх"><span class="icon icon-arrow-up" aria-hidden="true"></span></a></div>
+    </footer>
+  </div>
+  <script src="/js/site.js"></script>
+</body>
+</html>
